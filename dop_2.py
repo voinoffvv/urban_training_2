@@ -9,5 +9,5 @@ for i in range(1, 21):
             # res1.append([i, j])
             res.append(i)
             res.append(j)
-print(f'{a}:', ''.join(str(c) for c in res1))
+# print(f'{a}:', ''.join(str(c) for c in res1))
 print(f'{a}:', ''.join(str(c) for c in res))
