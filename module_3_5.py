@@ -1,6 +1,7 @@
 # Напиши функцию get_multiplied_digits, которая принимает аргумент целое число number и подсчитывает произведение цифр этого числа
 def get_multiplied_digits(number):
     str_number = str(number).replace('0','')  # убираем нули
+    if len(str_number) == 0: return 0
     first = int(str_number[0])
     if len(str_number) <= 1:
         return first
