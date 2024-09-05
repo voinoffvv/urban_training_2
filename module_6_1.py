@@ -1,7 +1,7 @@
 class Animal:
-    alive = True # живой
-    fed = False # накормленный
     def __init__(self, name):
+        self.alive = True  # живой
+        self.fed = False  # накормленный
         self.name = name
 
         # Если переданное растение (food) съедобное - выводит на экран "<self.name> съел <food.name>", меняется атрибут fed на True.
@@ -10,10 +10,8 @@ class Animal:
         if food.edible == True:
             print(f'{self.name} съел {food.name}')
             self.fed = True
-            self.alive = True
         else:  # Если переданное растение (food) не съедобное - выводит на экран "<self.name> не стал есть <food.name>", меняется атрибут alive на False.
             print(f'{self.name} не стал есть {food.name}')
-            self.fed = False
             self.alive = False
 
 class Plant:
@@ -22,21 +20,18 @@ class Plant:
         self.name = name
 
 class Mammal(Animal):
-    def __init__(self, name):
-        self.name = name
+    pass
+
 
 class Predator(Animal):
-    def __init__(self, name):
-        self.name = name
+    pass
 
-class Flower:
-    edible = False # съедобность
-    def __init__(self, name):
-        self.name = name
-class Fruit:
+
+class Flower(Plant):
+    pass
+
+class Fruit(Plant):
     edible = True # съедобность
-    def __init__(self, name):
-        self.name = name
 
 a1 = Predator('Волк с Уолл-Стрит')
 a2 = Mammal('Хатико')
