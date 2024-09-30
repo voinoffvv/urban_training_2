@@ -4,9 +4,7 @@
 
 def is_prime(fu):
     def wrapper(*args):
-        res = fu(*args)
-        if res == 1:
-            print('Простое')
+        res = fu(*args)      
         for i in range(2, res - 1):
             if res % i == 0:
                 print('Составное')
