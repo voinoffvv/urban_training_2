@@ -11,7 +11,7 @@ from datetime import datetime
 def write_words (word_count, file_name):
     with open(file_name, 'w', encoding='utf8') as f:
         for i in range(word_count):
-            f.write(f'Какое-то слово № {i}\n')
+            f.write(f'Какое-то слово № {i+1}\n')
             sleep(0.1)
         f.write(f'Завершилась запись в файл {file_name}')
 
