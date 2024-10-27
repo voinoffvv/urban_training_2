@@ -1,6 +1,17 @@
 from pprint import pprint
 import inspect
 
+class MyClass(object):
+    def __init__(self):
+        self.attr1 = 10
+        self.name= 'MyClass !!!'
+
+    def fu1(self):
+        return self.attr1 * 2
+
+    def __str__(self):
+        return self.name
+
 
 def introspection_info(obj):
     res = dict()
@@ -12,5 +23,6 @@ def introspection_info(obj):
     return res
 
 if __name__ == '__main__':
-    number_info = introspection_info(42)
+    myClassObj = MyClass()
+    number_info = introspection_info(myClassObj)
     pprint(number_info)
