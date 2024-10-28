@@ -33,6 +33,7 @@ from new_runner import Tournament
 class TournamentTest(unittest.TestCase):
     @classmethod
     def tearDownClass(cls):
+        print('!@@#$$@$#@$')
         for s in cls.all_results:
             print(s)
 
@@ -41,20 +42,20 @@ class TournamentTest(unittest.TestCase):
         cls.all_results = dict()
 
     def setUp(self):
-        self.r1 = Runner('Усэйн')
-        self.r2 = Runner('Андрей')
-        self.r3 = Runner('Ник')
+        self.r1 = Runner('Усэйн', 10)
+        self.r2 = Runner('Андрей', 9)
+        self.r3 = Runner('Ник', 3)
 
     def test_Tournament_1(self):
         t1 = Tournament(90, *[self.r1, self.r2, self.r3])
         self.all_results = t1.start()
         last1 : Runner = list(self.all_results[i] for i in self.all_results if i == max(self.all_results.keys())).pop()
-        self.assertTrue(last1.name == 'Усэйн')
+        self.assertTrue(last1.name == 'Ник')
     def test_Tournament_2(self):
         t2 = Tournament(90, *[self.r1, self.r2, self.r3])
         self.all_results = t2.start()
         last2 : Runner = list(self.all_results[i] for i in self.all_results if i == max(self.all_results.keys())).pop()
-        self.assertTrue(last2.name == 'Андрей')
+        self.assertTrue(last2.name == 'Ник')
     def test_Tournament_3(self):
         t3 = Tournament(90, *[self.r1, self.r2, self.r3])
         self.all_results = t3.start()
