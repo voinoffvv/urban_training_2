@@ -33,34 +33,50 @@ from new_runner import Tournament
 class TournamentTest(unittest.TestCase):
     @classmethod
     def tearDownClass(cls):
-        print('!@@#$$@$#@$')
-        for s in cls.all_results:
-            print(s)
+        for d in cls.all_results:
+            #print({k:v.name} for k, v in d)
+            print(d)
 
     @classmethod
     def setUpClass(cls):
-        cls.all_results = dict()
+        cls.all_results = list()
 
     def setUp(self):
         self.r1 = Runner('Усэйн', 10)
         self.r2 = Runner('Андрей', 9)
         self.r3 = Runner('Ник', 3)
 
+    # добавляем в словарь номер прибытия гонщика и имя гонщика строкой (Runner.name)
+    # если в словарь добавить объект класса Runner, то print не выводит его имя (почему-то, хотя __str__ реализовано)
+    def add_in_all_results(self, _list):
+        res = []
+        for k in _list:
+            res.append({k : _list[k].name})
+        self.all_results.append(res)
+
     def test_Tournament_1(self):
-        t1 = Tournament(90, *[self.r1, self.r2, self.r3])
-        self.all_results = t1.start()
-        last1 : Runner = list(self.all_results[i] for i in self.all_results if i == max(self.all_results.keys())).pop()
-        self.assertTrue(last1.name == 'Ник')
+        tournament = Tournament(90, *[self.r1, self.r3])
+        res = tournament.start()
+        #self.all_results.append(res)
+        self.add_in_all_results(res)
+        last : Runner = list(res[i] for i in res if i == max(res.keys())).pop() # ищем последнего бегуна
+        self.assertTrue(last.name == 'Ник')
+
     def test_Tournament_2(self):
-        t2 = Tournament(90, *[self.r1, self.r2, self.r3])
-        self.all_results = t2.start()
-        last2 : Runner = list(self.all_results[i] for i in self.all_results if i == max(self.all_results.keys())).pop()
-        self.assertTrue(last2.name == 'Ник')
+        tournament = Tournament(90, *[self.r2, self.r3])
+        res = tournament.start()
+        # self.all_results.append(res)
+        self.add_in_all_results(res)
+        last: Runner = list(res[i] for i in res if i == max(res.keys())).pop()  # ищем последнего бегуна
+        self.assertTrue(last.name == 'Ник')
+
     def test_Tournament_3(self):
-        t3 = Tournament(90, *[self.r1, self.r2, self.r3])
-        self.all_results = t3.start()
-        last3 : Runner = list(self.all_results[i] for i in self.all_results if i == max(self.all_results.keys())).pop()
-        self.assertTrue(last3.name == 'Ник')
+        tournament = Tournament(90, *[self.r1, self.r2, self.r3])
+        res = tournament.start()
+        # self.all_results.append(res)
+        self.add_in_all_results(res)
+        last: Runner = list(res[i] for i in res if i == max(res.keys())).pop()  # ищем последнего бегуна
+        self.assertTrue(last.name == 'Ник')
 
 if __name__ == '__main__':
     unittest.main()
