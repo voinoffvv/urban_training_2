@@ -13,18 +13,29 @@ from runner import Runner
 
 
 class RunnerTest(unittest.TestCase):
+
+    is_frozen = False
+
+    def __init__(self, methodName = "runTest"):        
+        super().__init__(methodName)
+        
+
+
+    @unittest.skipIf(is_frozen == True, 'Тесты в этом кейсе заморожены')
     def test_walk(self):
         r_walk = Runner('Runner 1')
         for _ in range(10):
             r_walk.walk()
         self.assertEqual(r_walk.distance, 50)
-
+    
+    @unittest.skipIf(is_frozen == True, 'Тесты в этом кейсе заморожены')
     def test_run(self):
         r_run = Runner('Runner 2')
         for _ in range(10):
             r_run.run()
         self.assertEqual(r_run.distance, 100)
 
+    @unittest.skipIf(is_frozen == True, 'Тесты в этом кейсе заморожены')
     def test_challenge(self):
         r_challenge1 = Runner('Runner 3')
         r_challenge2 = Runner('Runner 4')
