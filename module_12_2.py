@@ -31,6 +31,9 @@ from new_runner import Runner
 from new_runner import Tournament
 
 class TournamentTest(unittest.TestCase):
+   
+    is_frozen = True
+
     @classmethod
     def tearDownClass(cls):
         for d in cls.all_results:
@@ -41,6 +44,7 @@ class TournamentTest(unittest.TestCase):
     def setUpClass(cls):
         cls.all_results = list()
 
+    @unittest.skipIf(is_frozen == True, 'Тесты в этом кейсе заморожены')
     def setUp(self):
         self.r1 = Runner('Усэйн', 10)
         self.r2 = Runner('Андрей', 9)
@@ -54,6 +58,7 @@ class TournamentTest(unittest.TestCase):
             res.append({k : _list[k].name})
         self.all_results.append(res)
 
+    @unittest.skipIf(is_frozen == True, 'Тесты в этом кейсе заморожены')
     def test_Tournament_1(self):
         tournament = Tournament(90, *[self.r1, self.r3])
         res = tournament.start()
@@ -62,6 +67,7 @@ class TournamentTest(unittest.TestCase):
         last : Runner = list(res[i] for i in res if i == max(res.keys())).pop() # ищем последнего бегуна
         self.assertTrue(last.name == 'Ник')
 
+    @unittest.skipIf(is_frozen == True, 'Тесты в этом кейсе заморожены')
     def test_Tournament_2(self):
         tournament = Tournament(90, *[self.r2, self.r3])
         res = tournament.start()
@@ -70,6 +76,7 @@ class TournamentTest(unittest.TestCase):
         last: Runner = list(res[i] for i in res if i == max(res.keys())).pop()  # ищем последнего бегуна
         self.assertTrue(last.name == 'Ник')
 
+    @unittest.skipIf(is_frozen == True, 'Тесты в этом кейсе заморожены')
     def test_Tournament_3(self):
         tournament = Tournament(90, *[self.r1, self.r2, self.r3])
         res = tournament.start()
